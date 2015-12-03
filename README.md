@@ -35,14 +35,17 @@ A couple of scripts have been provided to help automate the above processes. Clo
 
 Have a look at the bash scripts before running them to get a better idea of what they are doing and if needs any customisations.
 
-### Build OpenJDK9
+### OpenJDK 9 Build (non-jigsaw)
 
-```host$ sh buildOpenJDK9UsingVagrant.sh```
+```host$ sh buildOpenJDK9UsingVagrant.sh jdk9```
 
-### Build Project Valhalla (OpenJDK9)
+### OpenJDK 9 Build (jigsaw)
 
-```host$ sh buildValhallaOpenJDK9UsingVagrant.sh```
+```host$ sh buildOpenJDK9UsingVagrant.sh jigsaw```
 
+### Project Valhalla OpenJDK 9 Build
+
+```host$ sh buildOpenJDK9UsingVagrant.sh valhalla```
 
 ## Step 4 (optinal): Create new scripts (recipes) for other OpenJDK projects
 
