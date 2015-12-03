@@ -8,6 +8,7 @@ The sections in this document are below, all the bullet points are steps require
   - **Any reference to host$ is a comment line argument to be executed on the host machine.**
   - **Any reference to vm$ is a comment line argument to be executed within a vagrant vm.**
 
+
   - Step 1: Install Software (Virtual Box, Vagrant & Git)
   - Step 2: Clone Adopt-OpenJDK-Kiss-Vagrant
   - Step 3: Boot & setup Vagrant VM (auto mode)
