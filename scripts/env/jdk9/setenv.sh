@@ -1,4 +1,5 @@
-export BUILD_NAME="OpenJDK9"
+#!/bin/bash
+
 export JDK_FOLDER=jdk9
 export OPENJDK_REPO=http://hg.openjdk.java.net/jdk9/jdk9
 ### This is the JDK8 path inside the vagrant box

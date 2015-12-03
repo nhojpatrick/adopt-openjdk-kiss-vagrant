@@ -4,28 +4,32 @@
 After attending a few hack days and seeing people take their first steps with AdoptOpenJDK. I thought I would review enviroment setup and strip it back to core and see if that is easier for people.
 
 ### Quick Start
-The sections in this document are below, all the bullet points are steps required, all **bold** sections provided more information or optional configuration. **Any reference to $ is a comment line argument to be executed within a vagrant vm. **
+The sections in this document are below, all the bullet points are steps required, all **bold** sections provided more information or optional configuration.
+**Any reference to host$ is a comment line argument to be executed on the host machine.**
+**Any reference to vm$ is a comment line argument to be executed within a vagrant vm.**
 
-  - Step 1: Install Virtual Box, Vagrant & Git
+  - Step 1: Install Software (Virtual Box, Vagrant & Git)
   - Step 2: Clone Adopt-OpenJDK-Kiss-Vagrant
   - Step 3: Boot & setup Vagrant VM (auto mode)
-    - OpenJDK 9 Build
+    - OpenJDK 9 Build (non-jigsaw)
+    - OpenJDK 9 Build (jigsaw)
     - Project Valhalla OpenJDK 9 Build
   - Step 4: Create new scripts (recipes) for other OpenJDK projects
   - Step 5a: Boot Vagrant VM (manual mode)
   - Step 5b: Initial Vagrant VM setup (manual mode)
-    - OpenJDK 9 Build
+    - OpenJDK 9 Build (non-jigsaw)
+    - OpenJDK 9 Build (jigsaw)
     - Project Valhalla OpenJDK 9 Build
 
 ## Step 1: Install Virtual Box, Vagrant & Git
 Install the software, initially created and tested on a Mac and the versions used as of 2015/01/18 are;
-  - Virtual Box v4.3.20 (https://www.virtualbox.org/wiki/Downloads)
-  - Vagrant v1.7.1 (https://www.vagrantup.com/downloads.html)
-  - Git v2.2.2 (http://git-scm.com/downloads)
+  - Virtual Box v5.0.10 (https://www.virtualbox.org/wiki/Downloads)
+  - Vagrant v1.7.4 (https://www.vagrantup.com/downloads.html)
+  - Git v2.6.2 (http://git-scm.com/downloads)
 
 ## Step 2: Clone Adopt-OpenJDK-Kiss-Vagrant
 Clone the git repository containing the vagrant files and scripts required.
-  - git clone https://github.com/adoptopenjdk/adopt-openjdk-kiss-vagrant.git
+  - git clone https://github.com/AdoptOpenJDK/adopt-openjdk-kiss-vagrant.git
 
 ## Step 3: Boot & setup Vagrant VM (auto mode)
 
@@ -35,11 +39,11 @@ Have a look at the bash scripts before running them to get a better idea of what
 
 ### Build OpenJDK9
 
-```$ sh buildOpenJDK9UsingVagrant.sh```
+```host$ sh buildOpenJDK9UsingVagrant.sh```
 
 ### Build Project Valhalla (OpenJDK9)
 
-```$ sh buildValhallaOpenJDK9UsingVagrant.sh```
+```host$ sh buildValhallaOpenJDK9UsingVagrant.sh```
 
 
 ## Step 4 (optinal): Create new scripts (recipes) for other OpenJDK projects
@@ -58,12 +62,12 @@ The vagrant setup is configured to use the official Ubuntu 14.10 64bit vagrant b
 **Before starting feel free to edit the Vagrantfile if your machine has more than 1 cpu and 512MB avaliable. When developing I used 2 cpus and 2048 memory. On 1st boot it will automatically download the vm image which is roughly 350MB. **
 
 ```
-  $ vagrant up
-  $ vagrant ssh
+  host$ vagrant up
+  host$ vagrant ssh
 ```
 
 ##### Troubleshooting
-If the virtual machine boots but you see apt errors. Try logging in aka <code>vagrant ssh</code> and then execute <code>$ sudo /vagrant/scripts/aptget-deps.sh</code>. This is the main reason it's a seperate script so can be manually re-executed if required.
+If the virtual machine boots but you see apt errors. Try logging in aka <code>vagrant ssh</code> and then execute <code>vm$ sudo /vagrant/scripts/aptget-deps.sh</code>. This is the main reason it's a seperate script so can be manually re-executed if required.
 
 Windows users will need to skip <code>vagrant ssh</code> and once the vm has booted scan the output to see what port it being used for ssh and use putty to login.
 
@@ -71,33 +75,33 @@ Windows users will need to skip <code>vagrant ssh</code> and once the vm has boo
 Once the vm has booted and dependencies have been installed the next script will download the latest version of jdk9, if already cloned it will update so multiple execute is handled.
 
 ```
-  $ vagrant ssh
-  $ sh /vagrant/scripts/source-share-with-host.sh
+  host$ vagrant ssh
+  vm$ sh /vagrant/scripts/source-share-with-host.sh
 ```
 
 ### OpenJDK 9 Build
 ```
-  $ vagrant ssh
-  $ cd /vagrant/sources/jdk9
-  $ bash get_source.sh
-  $ bash configure --disable-warnings-as-errors
-  $ make test ;
+  host$ vagrant ssh
+  vm$ cd /vagrant/sources/jdk9
+  vm$ bash get_source.sh
+  vm$ bash configure --disable-warnings-as-errors
+  vm$ make test ;
 ```
 
 ### OpenJDK 9 Build debug mode
 ```
-  $ vagrant ssh
-  $ cd /vagrant/sources/jdk9
-  $ bash get_source.sh
-  $ make clean images LOG=debug
+  host$ vagrant ssh
+  vm$ cd /vagrant/sources/jdk9
+  vm$ bash get_source.sh
+  vm$ make clean images LOG=debug
 ```
 
 ### Project Valhalla OpenJDK 9 Build debug mode
 ```
-  $ vagrant ssh
-  $ cd /vagrant/sources/valhalla
-  $ bash get_source.sh
-  $ make clean jimages LOG=debug
+  host$ vagrant ssh
+  vm$ cd /vagrant/sources/valhalla
+  vm$ bash get_source.sh
+  vm$ make clean jimages LOG=debug
 ```
 
 ## Scripts and their lifecycle

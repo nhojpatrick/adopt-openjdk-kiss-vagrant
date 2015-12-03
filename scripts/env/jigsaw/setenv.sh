@@ -1,4 +1,5 @@
-export BUILD_NAME="OpenJDK9"
+#!/bin/bash
+
 export JDK_FOLDER=jigsaw
 export OPENJDK_REPO=http://hg.openjdk.java.net/jigsaw/jake
 ### This is the JDK8 path inside the vagrant box
