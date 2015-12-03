@@ -5,8 +5,8 @@ After attending a few hack days and seeing people take their first steps with Ad
 
 ### Quick Start
 The sections in this document are below, all the bullet points are steps required, all **bold** sections provided more information or optional configuration.
-**Any reference to host$ is a comment line argument to be executed on the host machine.**
-**Any reference to vm$ is a comment line argument to be executed within a vagrant vm.**
+  - **Any reference to host$ is a comment line argument to be executed on the host machine.**
+  - **Any reference to vm$ is a comment line argument to be executed within a vagrant vm.**
 
   - Step 1: Install Software (Virtual Box, Vagrant & Git)
   - Step 2: Clone Adopt-OpenJDK-Kiss-Vagrant
